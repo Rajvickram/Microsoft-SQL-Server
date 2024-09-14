@@ -1,0 +1,86 @@
+1. UPDATE SYNTAX FOR SQL-SERVER :-
+
+
+update tbl_location set name = 'SQL'where id = 1
+
+--------*--------------------*-----------------*-----------------------------
+
+
+2. DELETE ONE ROW IN SQL-SERVER :-
+
+
+delete from tbl_location where id = 1
+
+
+-----------*-----------------*-------------------*----------------------*----------------
+
+
+3. ALTER TABLE ADD ONE NEW COLUMN :-
+
+
+alter table tbl_location ADD salary decimal(10,2)
+
+
+--------*----------------*----------------*-----------------------*-------------------------
+
+
+
+4. ALTER THE TABLE AND I WANT TO DELETE SAME TABLE LIKE ABOVE OF AN SALARY-COLUMN-NAME :-
+
+
+ALTER table tbl_location drop column salary
+
+-----------*--------------*-------------------*-------------------*--------------------
+
+
+
+5. INSERT ONE NEW ROW IN SAME TABLE :-
+
+
+SET IDENTITY_INSERT Poscon.dbo.tbl_location ON;
+
+INSERT INTO (id,name,ltype,address,phone,created_user)
+VALUES (1,'raj',2,'cdm',7010986623,'HCBJQJSJSQLMVC')
+
+SETIDENTITY_INSERT Poscon.dbo.tbl_location OFF;
+
+
+---------*----------------*-----------------*-------------------*-------------------*-------------
+
+
+
+6. SUB-QUERY EXAMPLE SYNTAX :-
+
+select name,ltype from tbl_location where ltype > (select AVG (ltype) from tbl_location where id IN (select id from tbl_location where name = 'shanmuga' or name = 'BR')) order by name;
+
+
+--------*--------------------*------------------*----------------*---------------*---------------------
+
+
+
+7. UPDATE ALL SALARY SAME VALUES :-
+
+
+update tbl_location set salary = 45000.00 where id = id * 1
+
+----*------------*------------*-------------------*------------------*-------------------------*------------
+
+
+
+8. FIRST 5 ROW SAME SALARY VALUES LIKE => 35250.00
+
+
+
+with cte as (select top 5 id from tbl_location) update tbl_location set salary = 35250.00 from tbl_location INNER JOIN cte on tbl_location.id = cte.id
+
+(OR)
+
+
+
+WE CAN USE THIS TYPE OF QUERY SYNTAX WHILE WE WANT TO THOSE ID'S :-
+
+
+UPDATE tbl_location SET salary = 69000.00 WHERE id IN (6,7,9,10,15);
+------*----------------*------------------*------------------*------------------*-----------------------
+
+
